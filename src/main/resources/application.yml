@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: ecommerceMini
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+
+app:
+  timezone: Asia/Ho_Chi_Minh
+  payment:
+    max-amount: 50000000
+  order:
+    pending-timeout: 15m
