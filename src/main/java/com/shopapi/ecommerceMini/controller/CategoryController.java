@@ -1,6 +1,7 @@
 package com.shopapi.ecommerceMini.controller;
 
 import com.shopapi.ecommerceMini.domain.Category;
+import com.shopapi.ecommerceMini.dto.CategoryResponse;
 import com.shopapi.ecommerceMini.service.CategoryService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,10 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
     @GetMapping
-    public List<Category> getAll(){
-        return categoryService.getAll();
+    public List<CategoryResponse> getAll(){
+        return categoryService.getAll().stream()
+                .map(CategoryResponse::from)
+                .toList();
     }
+
 }
