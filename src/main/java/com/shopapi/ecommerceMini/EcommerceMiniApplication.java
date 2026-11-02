@@ -1,27 +1,24 @@
 package com.shopapi.ecommerceMini;
 
-import com.shopapi.ecommerceMini.service.CheckoutService;
-import org.springframework.boot.CommandLineRunner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-
-import java.math.BigDecimal;
+import org.springframework.context.event.EventListener;
 
 @SpringBootApplication
 @ConfigurationPropertiesScan
 public class EcommerceMiniApplication {
-
+    Logger log = LoggerFactory.getLogger(EcommerceMiniApplication.class);
 	public static void main(String[] args) {
 		SpringApplication.run(EcommerceMiniApplication.class, args);
 	}
 
-    @Bean
-    CommandLineRunner run(CheckoutService checkoutService) {
-        return args -> System.out.println(
-                "RUN OK.");
+    @EventListener(ApplicationReadyEvent.class)
+    public void onReady() {
+        log.info("RUN OK.");
     }
 
 }
