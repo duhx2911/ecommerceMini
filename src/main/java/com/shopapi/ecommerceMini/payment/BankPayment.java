@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.time.Clock;
 import java.time.LocalDateTime;
 
-@Service
+@Service("bank")
 @ConditionalOnProperty(
         name = "app.payment.bank.enabled",
         havingValue = "true",

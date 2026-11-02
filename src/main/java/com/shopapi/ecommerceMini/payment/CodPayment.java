@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-@Service
+@Service("cod")
 @Primary
 public class CodPayment implements PaymentService{
     @Override
