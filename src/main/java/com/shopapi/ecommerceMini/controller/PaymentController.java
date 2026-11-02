@@ -2,10 +2,10 @@ package com.shopapi.ecommerceMini.controller;
 
 import com.shopapi.ecommerceMini.dto.PaymentRequest;
 import com.shopapi.ecommerceMini.service.CheckoutService;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
-import java.math.BigDecimal;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/payments")

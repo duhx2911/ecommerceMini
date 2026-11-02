@@ -1,6 +1,5 @@
 package com.shopapi.ecommerceMini.controller;
 
-import com.shopapi.ecommerceMini.domain.Category;
 import com.shopapi.ecommerceMini.dto.CategoryResponse;
 import com.shopapi.ecommerceMini.dto.CreateCategoryRequest;
 import com.shopapi.ecommerceMini.service.CategoryService;

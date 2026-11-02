@@ -1,21 +1,23 @@
 package com.shopapi.ecommerceMini.service;
 
 import com.shopapi.ecommerceMini.domain.Category;
-import com.shopapi.ecommerceMini.dto.CreateCategoryRequest;
 import com.shopapi.ecommerceMini.repository.CategoryRepository;
+import com.shopapi.ecommerceMini.repository.ProductRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CategoryService {
     private final CategoryRepository categoryRepository;
+    private final ProductRepository productRepository;
 
-    public CategoryService(CategoryRepository categoryRepository) {
+    public CategoryService(CategoryRepository categoryRepository,
+                           ProductRepository productRepository) {
         this.categoryRepository = categoryRepository;
+        this.productRepository = productRepository;
     }
     public List<Category> getAll(){
        return categoryRepository.findAll();
@@ -45,6 +47,10 @@ public class CategoryService {
     }
     public void delete(Long id){
         Category category = getById(id);
+        if (productRepository.existsByCategoryId(id)){
+            throw new  ResponseStatusException(HttpStatus.CONFLICT,
+                    "Category đang có sản phẩm, không thể xóa");
+        }
         categoryRepository.delete(category);
     }
 }

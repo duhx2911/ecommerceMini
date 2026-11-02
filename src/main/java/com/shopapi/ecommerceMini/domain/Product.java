@@ -19,6 +19,7 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    public Product(){}
     public Product(Long id, String name, String description, BigDecimal price, int stock, Category category) {
         this.id = id;
         this.name = name;
