@@ -11,7 +11,7 @@ import org.springframework.context.event.EventListener;
 @SpringBootApplication
 @ConfigurationPropertiesScan
 public class EcommerceMiniApplication {
-    Logger log = LoggerFactory.getLogger(EcommerceMiniApplication.class);
+    private static final Logger log = LoggerFactory.getLogger(EcommerceMiniApplication.class);
 	public static void main(String[] args) {
 		SpringApplication.run(EcommerceMiniApplication.class, args);
 	}

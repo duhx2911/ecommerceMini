@@ -1,5 +1,6 @@
 package com.shopapi.ecommerceMini.service;
 
+import com.shopapi.ecommerceMini.domain.Category;
 import com.shopapi.ecommerceMini.domain.Product;
 import com.shopapi.ecommerceMini.dto.request.product.CreateProductRequest;
 import com.shopapi.ecommerceMini.dto.request.product.PatchProductRequest;
@@ -41,8 +42,9 @@ public class ProductService {
 
     public ProductResponse update(Long id, UpdateProductRequest request) {
         Product product = findProductOrThrow(id);
+        Category category = categoryService.findCategoryOrThrow(request.categoryId());
         productMapper.updateEntity(request, product);
-        product.setCategory(categoryService.findCategoryOrThrow(request.categoryId()));
+        product.setCategory(category);
         return productMapper.toResponse(productRepository.save(product));
     }
 
