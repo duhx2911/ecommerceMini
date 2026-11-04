@@ -50,9 +50,12 @@ public class ProductService {
 
     public ProductResponse patch(Long id, PatchProductRequest request) {
         Product product = findProductOrThrow(id);
+        Category category = request.categoryId() != null
+                ? categoryService.findCategoryOrThrow(request.categoryId())
+                : null;
         productMapper.patchEntity(request, product);
-        if (request.categoryId() != null) {
-            product.setCategory(categoryService.findCategoryOrThrow(request.categoryId()));
+        if (category != null) {
+            product.setCategory(category);
         }
         return productMapper.toResponse(productRepository.save(product));
     }
