@@ -1,4 +1,4 @@
-package com.shopapi.ecommerceMini.dto;
+package com.shopapi.ecommerceMini.dto.request.payment;
 
 import java.math.BigDecimal;
 

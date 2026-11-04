@@ -1,7 +1,7 @@
 package com.shopapi.ecommerceMini.controller;
 
-import com.shopapi.ecommerceMini.dto.CategoryResponse;
-import com.shopapi.ecommerceMini.dto.CreateCategoryRequest;
+import com.shopapi.ecommerceMini.dto.response.category.CategoryResponse;
+import com.shopapi.ecommerceMini.dto.request.category.CreateCategoryRequest;
 import com.shopapi.ecommerceMini.service.CategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,19 +21,17 @@ public class CategoryController {
     }
     @GetMapping
     public List<CategoryResponse> getAll(){
-        return categoryService.getAll().stream()
-                .map(CategoryResponse::from)
-                .toList();
+        return categoryService.getAll();
     }
 
     @GetMapping("/{id}")
     public CategoryResponse getById(@PathVariable Long id){
-        return CategoryResponse.from(categoryService.getById(id));
+        return categoryService.getById(id);
     }
 
     @PostMapping
     public ResponseEntity<CategoryResponse> create(@RequestBody CreateCategoryRequest request){
-        CategoryResponse created = CategoryResponse.from(categoryService.create(request.name()));
+        CategoryResponse created = categoryService.create(request);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(created.id())
@@ -44,7 +42,7 @@ public class CategoryController {
     @PutMapping("/{id}")
     public CategoryResponse update(@PathVariable Long id,
                                    @RequestBody CreateCategoryRequest request){
-        return CategoryResponse.from(categoryService.update(id, request.name()));
+        return categoryService.update(id, request);
     }
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

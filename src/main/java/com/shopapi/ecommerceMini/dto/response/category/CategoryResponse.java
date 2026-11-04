@@ -1,4 +1,4 @@
-package com.shopapi.ecommerceMini.dto;
+package com.shopapi.ecommerceMini.dto.response.category;
 
 import com.shopapi.ecommerceMini.domain.Category;
 

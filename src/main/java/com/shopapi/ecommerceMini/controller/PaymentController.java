@@ -1,6 +1,6 @@
 package com.shopapi.ecommerceMini.controller;
 
-import com.shopapi.ecommerceMini.dto.PaymentRequest;
+import com.shopapi.ecommerceMini.dto.request.payment.PaymentRequest;
 import com.shopapi.ecommerceMini.service.CheckoutService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
