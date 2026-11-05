@@ -6,6 +6,8 @@ import com.shopapi.ecommerceMini.dto.request.product.UpdateProductRequest;
 import com.shopapi.ecommerceMini.dto.response.product.ProductDetailResponse;
 import com.shopapi.ecommerceMini.dto.response.product.ProductResponse;
 import com.shopapi.ecommerceMini.service.ProductService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,12 +31,12 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ProductDetailResponse getById(@PathVariable Long id) {
+    public ProductDetailResponse getById(@Positive @PathVariable Long id) {
         return productService.getById(id);
     }
 
     @PostMapping
-    public ResponseEntity<ProductResponse> create(@RequestBody CreateProductRequest request) {
+    public ResponseEntity<ProductResponse> create(@Valid @RequestBody CreateProductRequest request) {
         ProductResponse created = productService.create(request);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(created.id()).toUri();
@@ -42,20 +44,20 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    public ProductResponse update(@PathVariable Long id,
-                                  @RequestBody UpdateProductRequest request) {
+    public ProductResponse update(@Positive @PathVariable Long id,
+                                  @Valid @RequestBody UpdateProductRequest request) {
         return productService.update(id, request);
     }
 
     @PatchMapping("/{id}")
-    public ProductResponse patch(@PathVariable Long id,
-                                 @RequestBody PatchProductRequest request) {
+    public ProductResponse patch(@Positive @PathVariable Long id,
+                                 @Valid @RequestBody PatchProductRequest request) {
         return productService.patch(id, request);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long id) {
+    public void delete(@Positive @PathVariable Long id) {
         productService.delete(id);
     }
 }

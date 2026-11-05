@@ -3,6 +3,8 @@ package com.shopapi.ecommerceMini.controller;
 import com.shopapi.ecommerceMini.dto.response.category.CategoryResponse;
 import com.shopapi.ecommerceMini.dto.request.category.CreateCategoryRequest;
 import com.shopapi.ecommerceMini.service.CategoryService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,12 +27,12 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    public CategoryResponse getById(@PathVariable Long id){
+    public CategoryResponse getById(@Positive @PathVariable Long id){
         return categoryService.getById(id);
     }
 
     @PostMapping
-    public ResponseEntity<CategoryResponse> create(@RequestBody CreateCategoryRequest request){
+    public ResponseEntity<CategoryResponse> create(@Valid @RequestBody CreateCategoryRequest request){
         CategoryResponse created = categoryService.create(request);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -40,13 +42,13 @@ public class CategoryController {
     }
 
     @PutMapping("/{id}")
-    public CategoryResponse update(@PathVariable Long id,
-                                   @RequestBody CreateCategoryRequest request){
+    public CategoryResponse update(@Positive  @PathVariable Long id,
+                                   @Valid @RequestBody CreateCategoryRequest request){
         return categoryService.update(id, request);
     }
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long id){
+    public void delete(@Positive @PathVariable Long id){
         categoryService.delete(id);
     }
 }

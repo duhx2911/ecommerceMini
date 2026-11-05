@@ -10,3 +10,8 @@ spring:
 logging:
   level:
     com.shopapi: debug
+
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
