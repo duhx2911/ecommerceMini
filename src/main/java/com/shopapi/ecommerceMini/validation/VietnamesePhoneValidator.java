@@ -12,7 +12,7 @@ public class VietnamesePhoneValidator implements ConstraintValidator<VietnameseP
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         if (value == null) {
-            return true;   // null để @NotBlank xử lý, theo đúng quy tắc ở mục 2
+            return true;
         }
         return PATTERN.matcher(value).matches();
     }
